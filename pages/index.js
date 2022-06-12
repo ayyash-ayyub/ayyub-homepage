@@ -176,7 +176,7 @@ const Home = () => (
         </SimpleGrid>
 
         <Box align="center" my={4}>
-          <NextLink href="/postsxxx" passHref scroll={false}>
+          <NextLink href="/posts" passHref scroll={false}>
             <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
               Popular posts
             </Button>
