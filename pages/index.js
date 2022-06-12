@@ -37,15 +37,15 @@ const Home = () => (
         bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
         css={{ backdropFilter: 'blur(10px)' }}
       >
-        Hello, I&apos;m an indie app developer based in Japan!
+        Hello, I&apos;m an indie app developer based in Jakarta!
       </Box>
 
       <Box display={{ md: 'flex' }}>
         <Box flexGrow={1}>
           <Heading as="h2" variant="page-title">
-            Takuya Matsuyama
+            Abdul Rizal Adompo
           </Heading>
-          <p>Digital Craftsman ( Artist / Developer / Designer )</p>
+          <p>Digital Craftsman ( Coder / Developer )</p>
         </Box>
         <Box
           flexShrink={0}
@@ -64,7 +64,7 @@ const Home = () => (
             overflow="hidden"
           >
             <ProfileImage
-              src="/images/takuya.jpg"
+              src="/images/rizal.jpg"
               alt="Profile image"
               borderRadius="full"
               width="100%"
@@ -79,16 +79,15 @@ const Home = () => (
           Work
         </Heading>
         <Paragraph>
-          Abdul Rizal Adompo bla bla bla{' '}
+        To work in a professional, career-based environment that effectively utilizes my analytical, interpersonal, leadership and organizational skills to conceive and achieve solutions of various problems, the solutions which help the organization in not only meeting their needs, but also allowing it to grow.{' '}
           <NextLink href="/works/inkdrop" passHref scroll={false}>
             <Link>Inkdrop</Link>
           </NextLink>
-          . He publishes content for marketing his products and his YouTube
-          channel called &quot;
-          <NextLink href="https://www.youtube.com/devaslife" passHref>
+          .My Youtube &quot;
+          <NextLink href="https://www.youtube.com/channel/UCnc_esCg9PryGYM_Bgi0Wlg" passHref>
             <Link target="_blank">Dev as Life</Link>
           </NextLink>
-          &quot; has more than 100k subscribers.
+          &quot; feel free to subscribers.
         </Paragraph>
         <Box align="center" my={4}>
           <NextLink href="/works" passHref scroll={false}>
@@ -104,23 +103,19 @@ const Home = () => (
           Bio
         </Heading>
         <BioSection>
-          <BioYear>1984</BioYear>
-          Born in Osaka (大阪), Japan.
+          <BioYear>1987</BioYear>
+          Born in Kotamobagu, Bolaang Mongondow.
         </BioSection>
         <BioSection>
-          <BioYear>2010</BioYear>
-          Completed the Master&apos;s Program in the Graduate School of
-          Information Science at Nara Institute of Science and Technology
-          (奈良先端科学技術大学院大学情報科学研究科修士課程)
+          <BioYear>2012</BioYear>
+          Graduated from Institut Teknologi Bandung.
         </BioSection>
         <BioSection>
-          <BioYear>2010</BioYear>
-          Worked at Yahoo! Japan (ヤフー株式会社入社)
+          <BioYear>2009-now</BioYear>
+          Working at SEAMEO SEAMOLEC. 
         </BioSection>
-        <BioSection>
-          <BioYear>2012 to present</BioYear>
-          Working as a freelancer
-        </BioSection>
+       
+       
       </Section>
 
       <Section delay={0.3}>
@@ -128,15 +123,7 @@ const Home = () => (
           I ♥
         </Heading>
         <Paragraph>
-          Art, Music,{' '}
-          <Link href="https://illust.odoruinu.net/" target="_blank">
-            Drawing
-          </Link>
-          , Playing Drums,{' '}
-          <Link href="https://500px.com/p/craftzdog" target="_blank">
-            Photography
-          </Link>
-          , Leica, Machine Learning
+              A Man from Bolaang Mongondow, Kotamobagu, Sulawesi Utara. Indonesia
         </Paragraph>
       </Section>
 
@@ -146,7 +133,7 @@ const Home = () => (
         </Heading>
         <List>
           <ListItem>
-            <Link href="https://github.com/craftzdog" target="_blank">
+            <Link href="https://github.com/ayyash-ayyub" target="_blank">
               <Button
                 variant="ghost"
                 colorScheme="teal"
@@ -156,36 +143,16 @@ const Home = () => (
               </Button>
             </Link>
           </ListItem>
+         
+      
           <ListItem>
-            <Link href="https://twitter.com/inkdrop_app" target="_blank">
-              <Button
-                variant="ghost"
-                colorScheme="teal"
-                leftIcon={<IoLogoTwitter />}
-              >
-                @inkdrop_app (English)
-              </Button>
-            </Link>
-          </ListItem>
-          <ListItem>
-            <Link href="https://twitter.com/craftzdog" target="_blank">
-              <Button
-                variant="ghost"
-                colorScheme="teal"
-                leftIcon={<IoLogoTwitter />}
-              >
-                @craftzdog (日本語)
-              </Button>
-            </Link>
-          </ListItem>
-          <ListItem>
-            <Link href="https://instagram.com/craftzdog" target="_blank">
+            <Link href="https://instagram.com/ar_motoboi" target="_blank">
               <Button
                 variant="ghost"
                 colorScheme="teal"
                 leftIcon={<IoLogoInstagram />}
               >
-                @craftzdog
+                @ar_motoboi
               </Button>
             </Link>
           </ListItem>
@@ -193,18 +160,18 @@ const Home = () => (
 
         <SimpleGrid columns={[1, 2, 2]} gap={6}>
           <GridItem
-            href="https://www.youtube.com/devaslife"
-            title="Dev as Life"
+            href="https://www.youtube.com/channel/UCnc_esCg9PryGYM_Bgi0Wlg"
+            title="Youtube Channel"
             thumbnail={thumbYouTube}
           >
-            My YouTube channel (&gt;100k subs)
+            My YouTube channel 
           </GridItem>
           <GridItem
-            href="https://www.inkdrop.app/"
-            title="Inkdrop"
+            href="https://terminalkoding.com"
+            title="terminalkoding"
             thumbnail={thumbInkdrop}
           >
-            A Markdown note-taking app
+            My Startup
           </GridItem>
         </SimpleGrid>
 
