@@ -132,17 +132,7 @@ const Home = () => (
           On the web
         </Heading>
         <List>
-          <ListItem>
-            <Link href="https://github.com/ayyash-ayyub" target="_blank">
-              <Button
-                variant="ghost"
-                colorScheme="teal"
-                // leftIcon={<IoLogoGithub />}
-              >
-                @ar_motoboi
-              </Button>
-            </Link>
-          </ListItem>
+         
          
       
           <ListItem>
@@ -150,7 +140,7 @@ const Home = () => (
               <Button
                 variant="ghost"
                 colorScheme="teal"
-                // leftIcon={<IoLogoInstagram />}
+                 leftIcon={<IoLogoInstagram />}
               >
                 @ar_motoboi
               </Button>
@@ -158,27 +148,12 @@ const Home = () => (
           </ListItem>
         </List>
 
-        <SimpleGrid columns={[1, 2, 2]} gap={6}>
-          <GridItem
-            href="https://www.youtube.com/channel/UCnc_esCg9PryGYM_Bgi0Wlg"
-            title="Youtube Channel"
-            thumbnail={thumbYouTube}
-          >
-            My YouTube channel 
-          </GridItem>
-          <GridItem
-            href="https://terminalkoding.com"
-            title="terminalkoding"
-            thumbnail={thumbInkdrop}
-          >
-            My Startup
-          </GridItem>
-        </SimpleGrid>
+     
 
         <Box align="center" my={4}>
-          <NextLink href="/posts" passHref scroll={false}>
+          <NextLink href="https://www.youtube.com/channel/UCnc_esCg9PryGYM_Bgi0Wlg" passHref scroll={false}>
             <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
-              Popular posts
+              My Youtube
             </Button>
           </NextLink>
         </Box>
