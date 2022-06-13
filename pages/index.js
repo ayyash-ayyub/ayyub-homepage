@@ -80,14 +80,7 @@ const Home = () => (
         </Heading>
         <Paragraph>
         To work in a professional, career-based environment that effectively utilizes my analytical, interpersonal, leadership and organizational skills to conceive and achieve solutions of various problems, the solutions which help the organization in not only meeting their needs, but also allowing it to grow.{' '}
-          <NextLink href="/works/inkdrop" passHref scroll={false}>
-            <Link>Inkdrop</Link>
-          </NextLink>
-          .My Youtube &quot;
-          <NextLink href="https://www.youtube.com/channel/UCnc_esCg9PryGYM_Bgi0Wlg" passHref>
-            <Link target="_blank">Dev as Life</Link>
-          </NextLink>
-          &quot; feel free to subscribers.
+          
         </Paragraph>
         <Box align="center" my={4}>
           <NextLink href="/works" passHref scroll={false}>
