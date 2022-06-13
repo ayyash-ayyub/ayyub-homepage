@@ -46,6 +46,7 @@ const Home = () => (
             Abdul Rizal Adompo
           </Heading>
           <p>Digital Craftsman ( Coder / Developer )</p>
+          <p>This project only for experiment on Next.js and Vercel</p>
         </Box>
         <Box
           flexShrink={0}
