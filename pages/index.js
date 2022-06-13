@@ -137,7 +137,7 @@ const Home = () => (
               <Button
                 variant="ghost"
                 colorScheme="teal"
-                leftIcon={<IoLogoGithub />}
+                // leftIcon={<IoLogoGithub />}
               >
                 @ar_motoboi
               </Button>
@@ -150,7 +150,7 @@ const Home = () => (
               <Button
                 variant="ghost"
                 colorScheme="teal"
-                leftIcon={<IoLogoInstagram />}
+                // leftIcon={<IoLogoInstagram />}
               >
                 @ar_motoboi
               </Button>
