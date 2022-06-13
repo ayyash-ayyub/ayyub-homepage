@@ -94,7 +94,7 @@ const Home = () => (
 
       <Section delay={0.2}>
         <Heading as="h3" variant="section-title">
-          Bio
+          My Dad was
         </Heading>
         <BioSection>
           <BioYear>1987</BioYear>
@@ -105,8 +105,8 @@ const Home = () => (
           Graduated from Institut Teknologi Bandung.
         </BioSection>
         <BioSection>
-          <BioYear>2009-now</BioYear>
-          Working at SEAMEO SEAMOLEC. 
+          <BioYear>2017-now</BioYear>
+          Working at PT Terminal as CTO . 
         </BioSection>
        
        
