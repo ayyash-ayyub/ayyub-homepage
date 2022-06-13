@@ -43,9 +43,9 @@ const Home = () => (
       <Box display={{ md: 'flex' }}>
         <Box flexGrow={1}>
           <Heading as="h2" variant="page-title">
-            Abdul Rizal Adompo
+            Abdullah Ayyub Adompo
           </Heading>
-          <p>Digital Craftsman ( Coder / Developer )</p>
+          <p>Digital Craftsman ( Coder / Developer ).</p>
           <p>This project only for experiment on Next.js and Vercel</p>
         </Box>
         <Box
@@ -65,7 +65,7 @@ const Home = () => (
             overflow="hidden"
           >
             <ProfileImage
-              src="/images/rizal.jpg"
+              src="/images/ayyub.jpg"
               alt="Profile image"
               borderRadius="full"
               width="100%"
@@ -80,7 +80,7 @@ const Home = () => (
           Mukadimah
         </Heading>
         <Paragraph>
-        Akuoi na'a intau Bolaang Mongondow in lipu intau Jakarta. aidon 20 taong konaa pinogaidanku bo pinobuloianku. aka oyuon intau mongondow kona'a, yo ini' pa Akuoi bo poyodunguan kon Yondog{' '}
+        Akuoi (ki ama'ku) mosia na'a intau Bolaang Mongondow in lipu intau Jakarta. aidon 12 taong konaa nogaid. aka oyuon intau mongondow kona'a, yo ini' pa Akuoi bo poyodunguan kon Yondog{' '}
           
         </Paragraph>
         <Box align="center" my={4}>
