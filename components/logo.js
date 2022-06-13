@@ -35,7 +35,7 @@ const Logo = () => {
             fontWeight="bold"
             ml={3}
           >
-             - Ayyub Adompo
+               Ayyub Adompo
           </Text>
         </LogoBox>
       </a>
