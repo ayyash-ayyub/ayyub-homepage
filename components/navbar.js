@@ -73,7 +73,7 @@ const Navbar = props => {
         >
           <LinkItem 
           target="_blank"
-          href="terminalkoding.com" path={path}>
+          href="https://terminalkoding.com" path={path}>
             Works
           </LinkItem>
           <LinkItem

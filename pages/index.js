@@ -37,7 +37,7 @@ const Home = () => (
         bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
         css={{ backdropFilter: 'blur(10px)' }}
       >
-        Hello, I&apos;m an indie app developer based in Jakarta!
+        Hello, I&apos;m an IT consultant / app developer based in Jakarta!
       </Box>
 
       <Box display={{ md: 'flex' }}>
@@ -76,10 +76,10 @@ const Home = () => (
 
       <Section delay={0.1}>
         <Heading as="h3" variant="section-title">
-          Work
+          Mukadimah
         </Heading>
         <Paragraph>
-        To work in a professional, career-based environment that effectively utilizes my analytical, interpersonal, leadership and organizational skills to conceive and achieve solutions of various problems, the solutions which help the organization in not only meeting their needs, but also allowing it to grow.{' '}
+        Akuoi na'a intau Bolaang Mongondow in lipu intau Jakarta. aidon 20 taong konaa pinogaidanku bo pinobuloianku. aka oyuon intau mongondow kona'a, yo ini' pa Akuoi bo poyodunguan kon Yondog{' '}
           
         </Paragraph>
         <Box align="center" my={4}>
