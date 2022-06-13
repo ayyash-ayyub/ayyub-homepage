@@ -93,7 +93,7 @@ const Home = () => (
 
       <Section delay={0.2}>
         <Heading as="h3" variant="section-title">
-          My Dad was
+          born, and education
         </Heading>
         <BioSection>
           <BioYear>1987</BioYear>
@@ -105,7 +105,7 @@ const Home = () => (
         </BioSection>
         <BioSection>
           <BioYear>2017-now</BioYear>
-          Working at PT Terminal as CTO . 
+          Starting TerminalKoding 
         </BioSection>
        
        
@@ -122,7 +122,7 @@ const Home = () => (
 
       <Section delay={0.3}>
         <Heading as="h3" variant="section-title">
-          On the web
+          On the Internet
         </Heading>
         <List>
          
