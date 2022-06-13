@@ -83,13 +83,20 @@ const Home = () => (
         Akuoi (ki ama'ku) mosia na'a intau Bolaang Mongondow in lipu intau Jakarta. aidon 12 taong konaa nogaid. aka oyuon intau mongondow kona'a, yo ini' pa Akuoi bo poyodunguan kon Yondog{' '}
           
         </Paragraph>
+
+
+        
+
         <Box align="center" my={4}>
-          <NextLink href="https://terminalkoding.com" passHref scroll={false}>
+          <NextLink href="https://www.youtube.com/channel/UCnc_esCg9PryGYM_Bgi0Wlg" passHref scroll={false}>
             <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
-              Terminalkoding
+              My Youtube
             </Button>
           </NextLink>
         </Box>
+
+
+
       </Section>
 
       <Section delay={0.2}>
@@ -134,7 +141,7 @@ const Home = () => (
               <Button
                 variant="ghost"
                 colorScheme="teal"
-                //  leftIcon={<IoLogoInstagram />}
+                  leftIcon={<IoLogoInstagram />}
               >
                 @ar_motoboi
               </Button>
@@ -143,14 +150,14 @@ const Home = () => (
         </List>
 
      
-
         <Box align="center" my={4}>
-          <NextLink href="https://www.youtube.com/channel/UCnc_esCg9PryGYM_Bgi0Wlg" passHref scroll={false}>
+          <NextLink href="https://terminalkoding.com" passHref scroll={false}>
             <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
-              My Youtube
+              Terminalkoding
             </Button>
           </NextLink>
         </Box>
+       
       </Section>
     </Container>
   </Layout>
