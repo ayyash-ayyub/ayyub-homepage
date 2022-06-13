@@ -85,15 +85,7 @@ const Home = () => (
         </Paragraph>
 
 
-        
-
-        <Box align="center" my={4}>
-          <NextLink href="https://www.youtube.com/channel/UCnc_esCg9PryGYM_Bgi0Wlg" passHref scroll={false}>
-            <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
-              My Youtube
-            </Button>
-          </NextLink>
-        </Box>
+            
 
 
 
@@ -154,6 +146,14 @@ const Home = () => (
           <NextLink href="https://terminalkoding.com" passHref scroll={false}>
             <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
               Terminalkoding
+            </Button>
+          </NextLink>
+        </Box>
+
+        <Box align="center" my={4}>
+          <NextLink href="https://www.youtube.com/channel/UCnc_esCg9PryGYM_Bgi0Wlg" passHref scroll={false}>
+            <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
+              My Youtube
             </Button>
           </NextLink>
         </Box>
