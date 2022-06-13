@@ -140,7 +140,7 @@ const Home = () => (
               <Button
                 variant="ghost"
                 colorScheme="teal"
-                 leftIcon={<IoLogoInstagram />}
+                //  leftIcon={<IoLogoInstagram />}
               >
                 @ar_motoboi
               </Button>
