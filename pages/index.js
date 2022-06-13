@@ -83,9 +83,9 @@ const Home = () => (
           
         </Paragraph>
         <Box align="center" my={4}>
-          <NextLink href="/works" passHref scroll={false}>
+          <NextLink href="https://terminalkoding.com" passHref scroll={false}>
             <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
-              My portfolio
+              Terminalkoding
             </Button>
           </NextLink>
         </Box>
