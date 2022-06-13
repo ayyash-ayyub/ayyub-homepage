@@ -71,10 +71,14 @@ const Navbar = props => {
           flexGrow={1}
           mt={{ base: 4, md: 0 }}
         >
-          <LinkItem href="terminalkoding.com" path={path}>
+          <LinkItem 
+          target="_blank"
+          href="terminalkoding.com" path={path}>
             Works
           </LinkItem>
-          <LinkItem href="https://www.linkedin.com/in/adompo/" path={path}>
+          <LinkItem
+           target="_blank"
+          href="https://www.linkedin.com/in/adompo/" path={path}>
             LinkedIn
           </LinkItem>
           <LinkItem
@@ -106,14 +110,19 @@ const Navbar = props => {
                 <NextLink href="/" passHref>
                   <MenuItem as={Link}>About</MenuItem>
                 </NextLink>
-                <NextLink href="terminalkoding.com" passHref>
+                <NextLink 
+                target="_blank"
+                href="terminalkoding.com" passHref>
                   <MenuItem as={Link}>Works</MenuItem>
                 </NextLink>
-                <NextLink href="https://www.linkedin.com/in/adompo/" passHref>
+                <NextLink
+                target="_blank"
+                href="https://www.linkedin.com/in/adompo/" passHref>
                   <MenuItem as={Link}>LinkedIn</MenuItem>
                 </NextLink>
                 <MenuItem
                   as={Link}
+                  target="_blank"
                   href="https://github.com/ayyash-ayyub"
                 >
                   View Source
