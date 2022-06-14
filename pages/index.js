@@ -1,4 +1,5 @@
 import NextLink from 'next/link'
+import Logo from './logo'
 import {
   Link,
   Container,
@@ -133,9 +134,9 @@ const Home = () => (
               <Button
                 variant="ghost"
                 colorScheme="teal"
-                 // leftIcon={<IoLogoInstagram />}
+                leftIcon={<IoLogoInstagram />}
               >
-                @ar_motoboi
+                 @ar_motoboi
               </Button>
             </Link>
           </ListItem>
@@ -153,7 +154,7 @@ const Home = () => (
         <Box align="center" my={4}>
           <NextLink href="https://www.youtube.com/channel/UCnc_esCg9PryGYM_Bgi0Wlg" passHref scroll={false}>
             <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
-              My Youtube
+              Youtube
             </Button>
           </NextLink>
         </Box>
