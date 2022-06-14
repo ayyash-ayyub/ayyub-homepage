@@ -136,7 +136,7 @@ const Home = () => (
                 colorScheme="teal"
                // leftIcon={<IoLogoInstagram />}
               >
-               crafted by: @ar_motoboi
+               crafted by:  @ar_motoboi
               </Button>
             </Link>
           </ListItem>
