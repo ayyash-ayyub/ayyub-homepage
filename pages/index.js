@@ -1,5 +1,5 @@
 import NextLink from 'next/link'
-import Logo from './logo'
+
 import {
   Link,
   Container,
@@ -134,9 +134,9 @@ const Home = () => (
               <Button
                 variant="ghost"
                 colorScheme="teal"
-                leftIcon={<IoLogoInstagram />}
+               // leftIcon={<IoLogoInstagram />}
               >
-                 @ar_motoboi
+               crafted by: @ar_motoboi
               </Button>
             </Link>
           </ListItem>
