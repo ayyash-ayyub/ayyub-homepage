@@ -114,10 +114,10 @@ const Home = () => (
 
       <Section delay={0.3}>
         <Heading as="h3" variant="section-title">
-          I ♥
+          Me?
         </Heading>
         <Paragraph>
-              A Man from Bolaang Mongondow, Kotamobagu, Sulawesi Utara. Indonesia
+              A Man from Motoboi Besar, Bolaang Mongondow, Kotamobagu, Sulawesi Utara. Indonesia
         </Paragraph>
       </Section>
 
@@ -139,12 +139,13 @@ const Home = () => (
                crafted by:  @ar_motoboi
               </Button>
             </Link>
+            
           </ListItem>
         </List>
 
      
         <Box align="center" my={4}>
-          <NextLink href="https://terminalkoding.com" passHref scroll={false}>
+          <NextLink href="https://terminalkoding.com" target="_blank" passHref scroll={false}>
             <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
               Terminalkoding
             </Button>
@@ -152,7 +153,7 @@ const Home = () => (
         </Box>
 
         <Box align="center" my={4}>
-          <NextLink href="https://www.youtube.com/channel/UCnc_esCg9PryGYM_Bgi0Wlg" passHref scroll={false}>
+          <NextLink href="https://www.youtube.com/channel/UCnc_esCg9PryGYM_Bgi0Wlg/playlists" target="_blank" passHref scroll={false}>
             <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
               Youtube
             </Button>

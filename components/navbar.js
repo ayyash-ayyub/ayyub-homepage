@@ -81,6 +81,13 @@ const Navbar = props => {
           href="https://www.linkedin.com/in/adompo/" path={path}>
             LinkedIn
           </LinkItem>
+
+          <LinkItem
+           target="_blank"
+          href="https://drive.google.com/file/d/1XHwKWX83pFmFKFuDpTwRMH-FYJNFxr-Z/view?usp=sharing" path={path}>
+            2022 Resume
+          </LinkItem>
+
           <LinkItem
             target="_blank"
             href="https://github.com/ayyash-ayyub"
