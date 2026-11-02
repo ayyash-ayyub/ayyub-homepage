@@ -1,4 +1,5 @@
 import NextLink from 'next/link'
+import { useState } from 'react'
 
 import {
   Link,
@@ -18,6 +19,8 @@ import { BioSection, BioYear } from '../components/bio'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import { GridItem } from '../components/grid-item'
+import JavaChallenge from '../components/java-challenge'
+import { challenges } from '../components/java-challenges'
 import thumbYouTube from '../public/images/links/youtube.png'
 import thumbInkdrop from '../public/images/works/inkdrop_eyecatch.png'
 import Image from 'next/image'
@@ -27,19 +30,32 @@ const ProfileImage = chakra(Image, {
   shouldForwardProp: prop => ['width', 'height', 'src', 'alt'].includes(prop)
 })
 
-const Home = () => (
+const Home = () => {
+  const [homeUnlocked, setHomeUnlocked] = useState(false)
+  const heroBg = useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')
+
+  return (
   <Layout>
     <Container>
-      <Box
-        borderRadius="lg"
-        mb={6}
-        p={3}
-        textAlign="center"
-        bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
-        css={{ backdropFilter: 'blur(10px)' }}
-      >
-        Hello, I&apos;m an IT consultant / app developer based in Jakarta!
-      </Box>
+      {homeUnlocked ? (
+        <Box
+          borderRadius="lg"
+          mb={6}
+          p={3}
+          textAlign="center"
+          bg={heroBg}
+          css={{ backdropFilter: 'blur(10px)' }}
+        >
+          Hello, I&apos;m an IT consultant / app developer based in Jakarta!
+        </Box>
+      ) : (
+        <Box mb={6}>
+          <JavaChallenge
+            challenge={challenges.home}
+            onSolved={() => setHomeUnlocked(true)}
+          />
+        </Box>
+      )}
 
       <Box display={{ md: 'flex' }}>
         <Box flexGrow={1}>
@@ -163,7 +179,8 @@ const Home = () => (
       </Section>
     </Container>
   </Layout>
-)
+  )
+}
 
 export default Home
 export { getServerSideProps } from '../components/chakra'
