@@ -15,7 +15,6 @@ const SITE_URL = 'https://adompo.web.id'
 const Main = ({ children, router }) => {
   const canonicalPath = router.asPath === '/' ? '/' : router.asPath.split('?')[0].split('#')[0]
   const canonicalUrl = `${SITE_URL}${canonicalPath}`
-  const cardImage = `${SITE_URL}/card.png`
 
   return (
     <Box as="main" pb={8}>
@@ -37,27 +36,8 @@ const Main = ({ children, router }) => {
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="canonical" href={canonicalUrl} key="canonical" />
 
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Abdul Rizal Adompo" key="twitter:title" />
-        <meta
-          name="twitter:description"
-          content="Professional Profile, AI, Data Science and Technology"
-          key="twitter:description"
-        />
-        <meta name="twitter:image" content={cardImage} key="twitter:image" />
-
         <meta name="google-site-verification" content="HgHkAMDBOJxld7Zb3hBYFF1esGk5hZWUtOQNIy6SuoY" />
 
-        <meta property="og:site_name" content="Abdul Rizal Adompo" />
-        <meta property="og:title" content="Abdul Rizal Adompo - Personal Portfolio" key="og:title" />
-        <meta
-          property="og:description"
-          content="Professional Profile, AI, Data Science and Technology"
-          key="og:description"
-        />
-        <meta property="og:type" content="profile" key="og:type" />
-        <meta property="og:url" content={canonicalUrl} key="og:url" />
-        <meta property="og:image" content={cardImage} key="og:image" />
         <title key="title">Abdul Rizal Adompo | Data Scientist, AI & Machine Learning Engineer</title>
       </Head>
 
