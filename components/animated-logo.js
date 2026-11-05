@@ -9,10 +9,9 @@ const PIECE_DELAY_BASE_MS = 200
 const SHINE_GAP_MS = 150
 const SHINE_FALLBACK_BUFFER_MS = 500
 
-// Repeat the shine sweep every 6-8s for as long as the logo stays assembled.
+// Repeat the shine sweep every 1.5s for as long as the logo stays assembled.
 const SHINE_REPEAT = true
-const SHINE_REPEAT_MIN_MS = 6000
-const SHINE_REPEAT_MAX_MS = 8000
+const SHINE_REPEAT_MS = 1500
 
 export const AnimatedLogoStyle = () => (
   <Global
@@ -136,7 +135,6 @@ const LogoScene = () => {
 
   useEffect(() => {
     if (!SHINE_REPEAT || !shining) return undefined
-    const delay = SHINE_REPEAT_MIN_MS + Math.random() * (SHINE_REPEAT_MAX_MS - SHINE_REPEAT_MIN_MS)
     const timer = setTimeout(() => {
       setShining(false)
       requestAnimationFrame(() => {
@@ -153,7 +151,7 @@ const LogoScene = () => {
         setShineDirection(dir => (dir === 'ltr' ? 'rtl' : 'ltr'))
         setShining(true)
       })
-    }, delay)
+    }, SHINE_REPEAT_MS)
     return () => clearTimeout(timer)
   }, [shining])
 
