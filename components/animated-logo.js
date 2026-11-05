@@ -66,7 +66,7 @@ export const AnimatedLogoStyle = () => (
         mix-blend-mode: difference;
       }
       .logo.is-shining .logo-shine__band {
-        animation: logo-shine-sweep 0.55s cubic-bezier(.4,0,.2,1) forwards;
+        animation: logo-shine-sweep 0.7s cubic-bezier(.4,0,.2,1) forwards;
       }
       @keyframes logo-shine-sweep {
         0%   { opacity: 0; transform: skewX(-20deg) translateX(-160px); }
@@ -178,7 +178,8 @@ const LogoScene = () => {
         <defs>
           <linearGradient id="logoShineGrad" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0" stopColor="#fff" stopOpacity="0" />
-            <stop offset=".5" stopColor="#fff" stopOpacity="1" />
+            <stop offset=".18" stopColor="#fff" stopOpacity="1" />
+            <stop offset=".82" stopColor="#fff" stopOpacity="1" />
             <stop offset="1" stopColor="#fff" stopOpacity="0" />
           </linearGradient>
           <mask id="logoShineMask" maskUnits="userSpaceOnUse">
@@ -210,7 +211,7 @@ const LogoScene = () => {
             className="logo-shine__band"
             x="0"
             y="100"
-            width="110"
+            width="170"
             height="510"
             fill="url(#logoShineGrad)"
           />
