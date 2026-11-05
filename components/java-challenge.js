@@ -29,9 +29,19 @@ const JavaChallenge = ({ challenge, onSolved, buttonLabel = 'Run' }) => {
       borderColor={borderColor}
       css={{ backdropFilter: 'blur(10px)' }}
     >
-      <Text fontSize="sm" mb={2} opacity={0.8}>
-        🔒 {challenge.prompt}
-      </Text>
+      <HStack mb={2} opacity={0.8} spacing={2} align="center">
+        <Box
+          as="span"
+          flexShrink={0}
+          w="12px"
+          h="12px"
+          borderRadius="full"
+          bg="#FF5F57"
+          border="1px solid"
+          borderColor="#E0443E"
+        />
+        <Text fontSize="sm">{challenge.prompt}</Text>
+      </HStack>
       <Code
         display="block"
         whiteSpace="pre"
