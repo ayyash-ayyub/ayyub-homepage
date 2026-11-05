@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Box, Link } from '@chakra-ui/react'
 
 const Footer = () => {
   const startYear = 2022
@@ -7,7 +7,11 @@ const Footer = () => {
 
   return (
     <Box align="center" opacity={0.4} fontSize="sm">
-      &copy; {yearLabel} ayyubadompo@gmail.com | 3D voxel by: akira.saputr@gmail.com | All Rights Reserved.
+      &copy; {yearLabel}{' '}
+      <Link href="https://terminalkoding.com" target="_blank">
+        Terminal Koding Teknologi
+      </Link>{' '}
+      | All Rights Reserved.
     </Box>
 
     
