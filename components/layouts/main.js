@@ -1,14 +1,10 @@
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
 import NavBar from '../navbar'
 import { Box, Container } from '@chakra-ui/react'
 import Footer from '../footer'
-import VoxelDogLoader from '../voxel-dog-loader'
-
-const LazyVoxelDog = dynamic(() => import('../voxel-dog'), {
-  ssr: false,
-  loading: () => <VoxelDogLoader />
-})
+import AnimatedLogo, { AnimatedLogoStyle } from '../animated-logo'
+import { SectionStyle } from '../section'
+import { ThemeToggleStyle } from '../theme-toggle-button'
 
 const SITE_URL = 'https://adompo.web.id'
 
@@ -44,7 +40,10 @@ const Main = ({ children, router }) => {
       <NavBar path={router.asPath} />
 
       <Container maxW="container.md" pt={14}>
-        <LazyVoxelDog />
+        <AnimatedLogoStyle />
+        <SectionStyle />
+        <ThemeToggleStyle />
+        <AnimatedLogo />
 
         {children}
 
