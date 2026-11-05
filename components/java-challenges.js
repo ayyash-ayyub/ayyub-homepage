@@ -7,7 +7,7 @@ System.out.println(x + y); // harus mencetak 12`,
     answer: '7'
   },
   {
-    prompt: 'Bubble Sort. Lengkapi bagian kode yang kosong agar array diurutkan secara ascending:',
+    prompt: 'Lengkapi kode berikut untuk membuka profile adompo jika kau memang kepo:',
     code: `int[] arr = {5, 2, 4, 1, 3};
 for (int i = 0; i < arr.length - 1; i++) {
   for (int j = 0; j < arr.length - i - 1; j++) {
