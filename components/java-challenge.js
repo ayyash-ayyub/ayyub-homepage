@@ -59,6 +59,7 @@ const JavaChallenge = ({ challenge, onSolved, buttonLabel = 'Run' }) => {
         <Input
           size="sm"
           placeholder="Jawaban..."
+          maxLength={64}
           value={value}
           onChange={e => {
             setValue(e.target.value)
