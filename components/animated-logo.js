@@ -17,7 +17,7 @@ const SHINE_REPEAT_MAX_MS = 8000
 export const AnimatedLogoStyle = () => (
   <Global
     styles={`
-      .logo { width: min(70vw, 360px); height: auto; color: var(--logo-base, #fff); overflow: visible; margin: 0 auto; }
+      .logo { width: min(70vw, 360px); height: auto; color: var(--logo-base, #fff); overflow: visible; margin: 0 auto; isolation: isolate; }
       .pc {
         transform-box: fill-box;
         transform-origin: center;
@@ -63,6 +63,7 @@ export const AnimatedLogoStyle = () => (
         transform-box: view-box;
         transform: skewX(-20deg) translateX(-160px);
         opacity: 0;
+        mix-blend-mode: difference;
       }
       .logo.is-shining .logo-shine__band {
         animation: logo-shine-sweep 0.55s cubic-bezier(.4,0,.2,1) forwards;
@@ -177,13 +178,7 @@ const LogoScene = () => {
         <defs>
           <linearGradient id="logoShineGrad" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0" stopColor="#fff" stopOpacity="0" />
-            <stop
-              offset=".5"
-              style={{
-                stopColor: 'var(--logo-shine-color, #fff)',
-                stopOpacity: 'var(--logo-shine-opacity, .95)'
-              }}
-            />
+            <stop offset=".5" stopColor="#fff" stopOpacity="1" />
             <stop offset="1" stopColor="#fff" stopOpacity="0" />
           </linearGradient>
           <mask id="logoShineMask" maskUnits="userSpaceOnUse">
@@ -232,7 +227,6 @@ const AnimatedLogo = () => {
   const [replayKey, setReplayKey] = useState(0)
   const logoBase = useColorModeValue('#2e2e2e', '#d6d6d6')
   const shineColor = useColorModeValue('#9a9a9a', '#fff')
-  const shineOpacity = useColorModeValue(0.45, 0.95)
 
   const replay = useCallback(() => {
     setReplayKey(key => key + 1)
@@ -244,8 +238,7 @@ const AnimatedLogo = () => {
       py={[4, 8, 10]}
       style={{
         '--logo-base': logoBase,
-        '--logo-shine-color': shineColor,
-        '--logo-shine-opacity': shineOpacity
+        '--logo-shine-color': shineColor
       }}
     >
       <LogoScene key={replayKey} />
