@@ -1,5 +1,5 @@
 import NextLink from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import {
   Link,
@@ -20,7 +20,7 @@ import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import { GridItem } from '../components/grid-item'
 import JavaChallenge from '../components/java-challenge'
-import { challenges } from '../components/java-challenges'
+import { challenges, homeChallenges } from '../components/java-challenges'
 import thumbYouTube from '../public/images/links/youtube.png'
 import thumbInkdrop from '../public/images/works/inkdrop_eyecatch.png'
 import Image from 'next/image'
@@ -32,7 +32,12 @@ const ProfileImage = chakra(Image, {
 
 const Home = () => {
   const [homeUnlocked, setHomeUnlocked] = useState(false)
+  const [homeChallenge, setHomeChallenge] = useState(homeChallenges[0])
   const heroBg = useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')
+
+  useEffect(() => {
+    setHomeChallenge(homeChallenges[Math.floor(Math.random() * homeChallenges.length)])
+  }, [])
 
   return (
   <Layout>
@@ -51,7 +56,7 @@ const Home = () => {
       ) : (
         <Box mb={6}>
           <JavaChallenge
-            challenge={challenges.home}
+            challenge={homeChallenge}
             onSolved={() => setHomeUnlocked(true)}
           />
         </Box>

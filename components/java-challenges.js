@@ -1,11 +1,28 @@
-export const challenges = {
-  home: {
+export const homeChallenges = [
+  {
     prompt: 'Lengkapi kode berikut untuk membuka profile adompo jika kau memang kepo:',
     code: `int x = 5;
 int y = ____;
 System.out.println(x + y); // harus mencetak 12`,
     answer: '7'
   },
+  {
+    prompt: 'Bubble Sort. Lengkapi bagian kode yang kosong agar array diurutkan secara ascending:',
+    code: `int[] arr = {5, 2, 4, 1, 3};
+for (int i = 0; i < arr.length - 1; i++) {
+  for (int j = 0; j < arr.length - i - 1; j++) {
+    if (arr[j] ____ arr[j + 1]) {
+      int temp = arr[j];
+      arr[j] = arr[j + 1];
+      arr[j + 1] = temp;
+    }
+  }
+}`,
+    answer: '>'
+  }
+]
+
+export const challenges = {
   works: {
     prompt: 'Lengkapi kode Java berikut untuk membuka menu Works:',
     code: `String menu = "Wo" + ____ + "ks";
