@@ -249,18 +249,16 @@ const AnimatedLogo = () => {
       }}
     >
       <LogoScene key={replayKey} />
-      {process.env.NODE_ENV === 'development' && (
-        <Box
-          as="button"
-          type="button"
-          onClick={replay}
-          mt={2}
-          fontSize="xs"
-          opacity={0.5}
-        >
-          Replay
-        </Box>
-      )}
+      <Box
+        as="button"
+        type="button"
+        onClick={replay}
+        mt={2}
+        fontSize="xs"
+        opacity={0.5}
+      >
+        Replay
+      </Box>
     </Box>
   )
 }
