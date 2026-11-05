@@ -68,7 +68,7 @@ const JavaChallenge = ({ challenge, onSolved, buttonLabel = 'Run' }) => {
           onKeyDown={e => e.key === 'Enter' && check()}
           isInvalid={status === 'wrong'}
         />
-        <Button size="sm" colorScheme="teal" onClick={check}>
+        <Button size="sm" colorScheme="red" onClick={check}>
           {buttonLabel}
         </Button>
       </HStack>
