@@ -1,6 +1,6 @@
 export const challenges = {
   home: {
-    prompt: 'Lengkapi kode Java berikut untuk membuka bagian ini:',
+    prompt: 'Lengkapi kode berikut untuk membuka profile adompo jika kau memang kepo:',
     code: `int x = 5;
 int y = ____;
 System.out.println(x + y); // harus mencetak 12`,
