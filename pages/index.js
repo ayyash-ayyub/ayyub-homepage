@@ -6,7 +6,6 @@ import {
   Container,
   Heading,
   Box,
-  SimpleGrid,
   Button,
   List,
   ListItem,
@@ -18,11 +17,8 @@ import Paragraph from '../components/paragraph'
 import { BioSection, BioYear } from '../components/bio'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
-import { GridItem } from '../components/grid-item'
 import JavaChallenge from '../components/java-challenge'
-import { challenges, homeChallenges } from '../components/java-challenges'
-import thumbYouTube from '../public/images/links/youtube.png'
-import thumbInkdrop from '../public/images/works/inkdrop_eyecatch.png'
+import { homeChallenges } from '../components/java-challenges'
 import Image from 'next/image'
 
 
