@@ -9,9 +9,9 @@ const PIECE_DELAY_BASE_MS = 200
 const SHINE_GAP_MS = 150
 const SHINE_FALLBACK_BUFFER_MS = 500
 
-// Repeat the shine sweep every 1.5s for as long as the logo stays assembled.
+// Repeat the shine sweep every 2s for as long as the logo stays assembled.
 const SHINE_REPEAT = true
-const SHINE_REPEAT_MS = 1500
+const SHINE_REPEAT_MS = 2000
 
 export const AnimatedLogoStyle = () => (
   <Global
