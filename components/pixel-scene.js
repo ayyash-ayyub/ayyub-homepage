@@ -70,6 +70,55 @@ export const PixelSceneStyle = () => (
         height: auto;
         image-rendering: pixelated;
       }
+      .pixel-scene__arm {
+        position: absolute;
+        left: 43.75%;
+        top: 50%;
+        width: 18.75%;
+        height: 13.6364%;
+        image-rendering: pixelated;
+        pointer-events: none;
+        animation: pixel-arm-type 0.35s steps(2, end) infinite;
+      }
+      @keyframes pixel-arm-type {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(-35%); }
+      }
+      .pixel-scene__words {
+        position: absolute;
+        left: 68%;
+        top: 14%;
+        pointer-events: none;
+      }
+      .pixel-scene__word {
+        position: absolute;
+        left: 0;
+        top: 0;
+        white-space: nowrap;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 9px;
+        font-weight: 700;
+        color: #ffffff;
+        text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.7);
+        opacity: 0;
+        animation: pixel-word-float 12s linear infinite;
+      }
+      .pixel-scene__word--warn {
+        color: #ef4444;
+      }
+      .pixel-scene__word:nth-of-type(1) { animation-delay: 0s; }
+      .pixel-scene__word:nth-of-type(2) { animation-delay: -2s; }
+      .pixel-scene__word:nth-of-type(3) { animation-delay: -4s; }
+      .pixel-scene__word:nth-of-type(4) { animation-delay: -6s; }
+      .pixel-scene__word:nth-of-type(5) { animation-delay: -8s; }
+      .pixel-scene__word:nth-of-type(6) { animation-delay: -10s; }
+      @keyframes pixel-word-float {
+        0%      { opacity: 0; transform: translate(-50%, 0); }
+        2.67%   { opacity: 1; }
+        13.33%  { opacity: 1; transform: translate(-50%, -16px); }
+        16.67%  { opacity: 0; transform: translate(-50%, -20px); }
+        100%    { opacity: 0; transform: translate(-50%, -20px); }
+      }
       @keyframes pixel-pet-walk {
         0%   { left: 0; }
         38%  { left: calc(100% - 36px); }
@@ -83,6 +132,8 @@ export const PixelSceneStyle = () => (
       }
       @media (prefers-reduced-motion: reduce) {
         .pixel-scene__pet-wrap { animation: none; }
+        .pixel-scene__arm { animation: none; }
+        .pixel-scene__word { animation: none; opacity: 0; }
       }
 
       .pixel-bubble {
@@ -212,6 +263,15 @@ const PixelScene = () => {
             onClick={() => setOpenDialog(v => (v === 'desk' ? null : 'desk'))}
           >
             <img className="pixel-scene__desk" src="/pixel-desk.svg" alt="" aria-hidden="true" />
+          </Box>
+          <img className="pixel-scene__arm" src="/pixel-arm.svg" alt="" aria-hidden="true" />
+          <Box className="pixel-scene__words" aria-hidden="true">
+            <span className="pixel-scene__word">code</span>
+            <span className="pixel-scene__word">commit</span>
+            <span className="pixel-scene__word">push</span>
+            <span className="pixel-scene__word">pull</span>
+            <span className="pixel-scene__word pixel-scene__word--warn">pemai ngana!</span>
+            <span className="pixel-scene__word">deploy</span>
           </Box>
         </Box>
       </Box>
