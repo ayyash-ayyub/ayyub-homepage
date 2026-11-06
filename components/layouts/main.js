@@ -5,6 +5,7 @@ import Footer from '../footer'
 import AnimatedLogo, { AnimatedLogoStyle } from '../animated-logo'
 import { SectionStyle } from '../section'
 import { ThemeToggleStyle } from '../theme-toggle-button'
+import PixelScene, { PixelSceneStyle } from '../pixel-scene'
 
 const SITE_URL = 'https://adompo.web.id'
 
@@ -43,10 +44,12 @@ const Main = ({ children, router }) => {
         <AnimatedLogoStyle />
         <SectionStyle />
         <ThemeToggleStyle />
+        <PixelSceneStyle />
         <AnimatedLogo />
 
         {children}
 
+        <PixelScene />
         <Footer />
       </Container>
     </Box>
