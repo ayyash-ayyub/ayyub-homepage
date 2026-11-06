@@ -1,9 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Box, Code, Input, Button, Text, HStack, useColorModeValue } from '@chakra-ui/react'
 
-const JavaChallenge = ({ challenge, onSolved, buttonLabel = 'Run' }) => {
+const JavaChallenge = ({ challenge, onSolved, onOtherChallenge, buttonLabel = 'Run' }) => {
   const [value, setValue] = useState('')
   const [status, setStatus] = useState(null) // null | 'wrong' | 'correct'
+
+  useEffect(() => {
+    setValue('')
+    setStatus(null)
+  }, [challenge])
 
   const codeColor = useColorModeValue('gray.800', 'green.300')
   const boxBg = useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')
@@ -73,9 +78,28 @@ const JavaChallenge = ({ challenge, onSolved, buttonLabel = 'Run' }) => {
         </Button>
       </HStack>
       {status === 'wrong' && (
-        <Text fontSize="xs" color="red.400" mt={2}>
-          Belum tepat, coba lagi.
-        </Text>
+        onOtherChallenge ? (
+          <HStack mt={2} spacing={2}>
+            <Button
+              size="xs"
+              variant="outline"
+              colorScheme="red"
+              onClick={() => {
+                setStatus(null)
+                setValue('')
+              }}
+            >
+              Try Again
+            </Button>
+            <Button size="xs" variant="outline" onClick={onOtherChallenge}>
+              Other Challenge
+            </Button>
+          </HStack>
+        ) : (
+          <Text fontSize="xs" color="red.400" mt={2}>
+            Belum tepat, coba lagi.
+          </Text>
+        )
       )}
       {status === 'correct' && (
         <Text fontSize="xs" color="green.400" mt={2}>

@@ -35,6 +35,17 @@ const Home = () => {
     setHomeChallenge(homeChallenges[Math.floor(Math.random() * homeChallenges.length)])
   }, [])
 
+  const pickOtherChallenge = () => {
+    setHomeChallenge(prev => {
+      if (homeChallenges.length <= 1) return prev
+      let next
+      do {
+        next = homeChallenges[Math.floor(Math.random() * homeChallenges.length)]
+      } while (next === prev)
+      return next
+    })
+  }
+
   return (
   <Layout>
     <Container>
@@ -54,6 +65,7 @@ const Home = () => {
           <JavaChallenge
             challenge={homeChallenge}
             onSolved={() => setHomeUnlocked(true)}
+            onOtherChallenge={pickOtherChallenge}
           />
         </Box>
       )}
