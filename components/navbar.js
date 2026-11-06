@@ -44,8 +44,9 @@ const GatedLinkItem = ({ link, solved, onLocked, ...props }) => {
   const Icon = link.icon
   return (
     <Link
-      href={link.href}
-      target="_blank"
+      href={solved ? link.href : '#'}
+      target={solved ? '_blank' : undefined}
+      rel={solved ? 'noopener noreferrer' : undefined}
       p={2}
       color={inactiveColor}
       display={Icon ? 'inline-flex' : undefined}
@@ -145,8 +146,9 @@ const Navbar = props => {
                   <MenuItem
                     key={link.id}
                     as={Link}
-                    href={link.href}
-                    target="_blank"
+                    href={solved[link.id] ? link.href : '#'}
+                    target={solved[link.id] ? '_blank' : undefined}
+                    rel={solved[link.id] ? 'noopener noreferrer' : undefined}
                     onClick={e => {
                       if (!solved[link.id]) {
                         e.preventDefault()
