@@ -28,8 +28,8 @@ const Main = ({ children, router }) => {
         <meta name="author" content="Abdul Rizal Adompo" />
         <meta name="robots" content="index, follow" />
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
+        <link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon" />
         <link rel="canonical" href={canonicalUrl} key="canonical" />
 
         <meta name="google-site-verification" content="TTT_nnwKmUPtKpikhkkNUr_JJoqyo9u53Iz2S_X1iOw" />
