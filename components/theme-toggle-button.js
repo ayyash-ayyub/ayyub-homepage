@@ -27,7 +27,6 @@ const ThemeToggleButton = () => {
     <span key={mode} className="theme-toggle-enter" style={{ display: 'inline-block' }}>
       <IconButton
         aria-label="Toggle theme"
-        colorScheme={useColorModeValue('purple', 'orange')}
         icon={useColorModeValue(<MoonIcon />, <SunIcon />)}
         onClick={toggleColorMode}
       ></IconButton>

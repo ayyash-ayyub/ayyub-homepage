@@ -73,7 +73,7 @@ const JavaChallenge = ({ challenge, onSolved, onOtherChallenge, buttonLabel = 'R
           onKeyDown={e => e.key === 'Enter' && check()}
           isInvalid={status === 'wrong'}
         />
-        <Button size="sm" colorScheme="red" onClick={check}>
+        <Button size="sm" onClick={check}>
           {buttonLabel}
         </Button>
       </HStack>
@@ -83,7 +83,6 @@ const JavaChallenge = ({ challenge, onSolved, onOtherChallenge, buttonLabel = 'R
             <Button
               size="xs"
               variant="outline"
-              colorScheme="red"
               onClick={() => {
                 setStatus(null)
                 setValue('')

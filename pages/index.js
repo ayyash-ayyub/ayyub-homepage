@@ -153,7 +153,6 @@ const Home = () => {
                 <Link href="https://instagram.com/ar_motoboi" target="_blank">
                   <Button
                     variant="ghost"
-                    colorScheme="teal"
                    // leftIcon={<IoLogoInstagram />}
                   >
                    crafted by:  @ar_motoboi
@@ -164,7 +163,7 @@ const Home = () => {
 
             <Box align="center" my={4}>
               <NextLink href="https://terminalkoding.com" target="_blank" passHref scroll={false}>
-                <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
+                <Button rightIcon={<ChevronRightIcon />}>
                   Terminalkoding
                 </Button>
               </NextLink>
@@ -172,7 +171,7 @@ const Home = () => {
 
             <Box align="center" my={4}>
               <NextLink href="https://www.youtube.com/channel/UCnc_esCg9PryGYM_Bgi0Wlg/playlists" target="_blank" passHref scroll={false}>
-                <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
+                <Button rightIcon={<ChevronRightIcon />}>
                   Youtube
                 </Button>
               </NextLink>
