@@ -229,6 +229,9 @@ const AnimatedLogo = () => {
 
   const replay = useCallback(() => {
     setReplayKey(key => key + 1)
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('adompo:replay'))
+    }
   }, [])
 
   return (

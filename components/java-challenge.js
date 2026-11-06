@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Box, Code, Input, Button, Text, HStack, useColorModeValue } from '@chakra-ui/react'
+import CodingMascot, { CodingMascotStyle } from './coding-mascot'
 
 const JavaChallenge = ({ challenge, onSolved, onOtherChallenge, buttonLabel = 'Run' }) => {
   const [value, setValue] = useState('')
@@ -27,13 +28,17 @@ const JavaChallenge = ({ challenge, onSolved, onOtherChallenge, buttonLabel = 'R
 
   return (
     <Box
+      position="relative"
       borderRadius="lg"
       p={4}
       bg={boxBg}
       borderWidth={1}
       borderColor={borderColor}
+      transform="rotate(4deg)"
       css={{ backdropFilter: 'blur(10px)' }}
     >
+      <CodingMascotStyle />
+      <CodingMascot />
       <HStack mb={2} opacity={0.8} spacing={2} align="center">
         <Box
           as="span"
