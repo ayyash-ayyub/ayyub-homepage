@@ -21,7 +21,7 @@ for (int i = 0; i < arr.length - 1; i++) {
     answer: '>'
   },
   {
-    prompt: 'Lengkapi kode berikut (isi 2 parameter, pisahkan dengan koma tanpa spasi, contoh: a,b) untuk membuka profile adompo jika kau memang kepo:',
+    prompt: 'Lengkapi kode berikut untuk membuka profile adompo jika kau memang kepo:',
     code: `char[] huruf = "OADMPO".toCharArray();
 Arrays.sort(huruf, ____, ____);
 System.out.println(new String(huruf)); // harus mencetak "ADOMPO"`,
