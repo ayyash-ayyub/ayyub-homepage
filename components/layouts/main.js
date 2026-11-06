@@ -32,7 +32,7 @@ const Main = ({ children, router }) => {
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="canonical" href={canonicalUrl} key="canonical" />
 
-        <meta name="google-site-verification" content="HgHkAMDBOJxld7Zb3hBYFF1esGk5hZWUtOQNIy6SuoY" />
+        <meta name="google-site-verification" content="TTT_nnwKmUPtKpikhkkNUr_JJoqyo9u53Iz2S_X1iOw" />
 
         <title key="title">Abdul Rizal Adompo | Data Scientist, AI & Machine Learning Engineer</title>
       </Head>
