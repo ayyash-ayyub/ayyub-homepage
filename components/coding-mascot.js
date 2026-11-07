@@ -10,8 +10,12 @@ export const CodingMascotStyle = () => (
         bottom: 100%;
         right: 6px;
         width: 56px;
-        transform: translateX(0) rotate(-4deg);
+        transform: translateX(0) rotate(0deg);
         transform-origin: center bottom;
+      }
+      @keyframes coding-mascot-teeter {
+        0%, 100% { transform: translateX(12px) rotate(19deg); }
+        50%      { transform: translateX(12px) rotate(13deg); }
       }
       .coding-mascot__btn {
         display: block;
@@ -78,6 +82,7 @@ export const CodingMascotStyle = () => (
         100%    { opacity: 0; transform: translate(-50%, -20px); }
       }
       @media (prefers-reduced-motion: reduce) {
+        .coding-mascot { animation: none !important; }
         .coding-mascot__arm { animation: none; }
         .coding-mascot__word { animation: none; opacity: 0; }
       }
@@ -140,48 +145,102 @@ export const CodingMascotStyle = () => (
   />
 )
 
-const SLIDE_FRACTION = 0.25
-const SLIDE_ROTATION = 'rotate(-4deg)'
-const SLIDE_TRANSITION = 'transform 0.7s cubic-bezier(0.17, 0.84, 0.44, 1)'
+const EDGE_MARGIN = 6 // matches `right: 6px` in .coding-mascot
+const MASCOT_WIDTH = 56 // matches `width: 56px` in .coding-mascot
+// Final landed pose: pushed a bit past its resting margin and leaning hard
+// toward the corner, like it skidded too far and is teetering right on the
+// edge - still caught by the card, not actually falling off.
+const FINAL_X_OFFSET = 12
+const FINAL_ROTATION_DEG = 16
+const SLIDE_MS = 700
+const SLIDE_TRANSITION = `transform ${SLIDE_MS}ms cubic-bezier(0.17, 0.84, 0.44, 1)`
+const TEETER_MS = 2400
+const TEETER_ANIMATION = `coding-mascot-teeter ${TEETER_MS}ms ease-in-out infinite`
+// How long the card's own straighten-to-tilted animation takes
+// (components/java-challenge.js). The mascot waits this long before
+// sliding in, so it only "slides downhill" once the card is actually
+// tilted - like it got pulled into the corner by gravity.
+export const CARD_TILT_MS = 500
+
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+// How far left (as a negative translateX, in px) the mascot has to move from
+// its right-anchored resting spot to park at the card's left corner, mirroring
+// the same edge margin on both sides.
+const leftCornerOffset = cardWidth => -(cardWidth - MASCOT_WIDTH - 2 * EDGE_MARGIN)
 
 const CodingMascot = () => {
   const [dialogOpen, setDialogOpen] = useState(false)
   const wrapRef = useRef(null)
-  const [slideKey, setSlideKey] = useState(0)
 
+  // Parked at the card's left corner until "Jangan diklik" is pressed.
   useEffect(() => {
-    const handleReplay = () => setSlideKey(k => k + 1)
-    window.addEventListener('adompo:replay', handleReplay)
-    return () => window.removeEventListener('adompo:replay', handleReplay)
+    const el = wrapRef.current
+    if (!el || !el.parentElement) return undefined
+    const cardWidth = el.parentElement.getBoundingClientRect().width
+    el.style.transition = 'none'
+    el.style.transform = `translateX(${leftCornerOffset(cardWidth)}px) rotate(0deg)`
+    return undefined
   }, [])
 
   useEffect(() => {
     const el = wrapRef.current
     if (!el || !el.parentElement) return undefined
 
-    const reduceMotion =
-      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduceMotion) return undefined
-
-    const cardWidth = el.parentElement.getBoundingClientRect().width
-    const startOffset = -(cardWidth * SLIDE_FRACTION)
-
-    el.style.transition = 'none'
-    el.style.transform = `translateX(${startOffset}px) ${SLIDE_ROTATION}`
-
+    let delayTimer
+    let startFrame
     let settleFrame
-    const startFrame = requestAnimationFrame(() => {
-      settleFrame = requestAnimationFrame(() => {
-        el.style.transition = SLIDE_TRANSITION
-        el.style.transform = `translateX(0) ${SLIDE_ROTATION}`
-      })
-    })
+    let completeTimer
 
+    const handleTilt = () => {
+      const cardWidth = el.parentElement.getBoundingClientRect().width
+      const startOffset = leftCornerOffset(cardWidth)
+
+      el.style.animation = 'none'
+
+      if (prefersReducedMotion()) {
+        el.style.transition = 'none'
+        el.style.transform = `translateX(${FINAL_X_OFFSET}px) rotate(${FINAL_ROTATION_DEG}deg)`
+        window.dispatchEvent(new Event('adompo:tilt-complete'))
+        return
+      }
+
+      el.style.transition = 'none'
+      el.style.transform = `translateX(${startOffset}px) rotate(0deg)`
+
+      delayTimer = setTimeout(() => {
+        startFrame = requestAnimationFrame(() => {
+          settleFrame = requestAnimationFrame(() => {
+            el.style.transition = SLIDE_TRANSITION
+            el.style.transform = `translateX(${FINAL_X_OFFSET}px) rotate(${FINAL_ROTATION_DEG}deg)`
+          })
+        })
+        completeTimer = setTimeout(() => {
+          el.style.transition = 'none'
+          el.style.animation = TEETER_ANIMATION
+          window.dispatchEvent(new Event('adompo:tilt-complete'))
+        }, SLIDE_MS + 50)
+      }, CARD_TILT_MS)
+    }
+
+    const handleUntilt = () => {
+      el.style.animation = 'none'
+      el.style.transition = prefersReducedMotion() ? 'none' : `transform ${CARD_TILT_MS}ms ease-out`
+      el.style.transform = 'translateX(0) rotate(0deg)'
+    }
+
+    window.addEventListener('adompo:tilt', handleTilt)
+    window.addEventListener('adompo:untilt', handleUntilt)
     return () => {
-      cancelAnimationFrame(startFrame)
+      window.removeEventListener('adompo:tilt', handleTilt)
+      window.removeEventListener('adompo:untilt', handleUntilt)
+      clearTimeout(delayTimer)
+      clearTimeout(completeTimer)
+      if (startFrame) cancelAnimationFrame(startFrame)
       if (settleFrame) cancelAnimationFrame(settleFrame)
     }
-  }, [slideKey])
+  }, [])
 
   useEffect(() => {
     if (!dialogOpen) return undefined

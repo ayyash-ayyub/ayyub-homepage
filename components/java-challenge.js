@@ -1,15 +1,45 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Box, Code, Input, Button, Text, HStack, useColorModeValue } from '@chakra-ui/react'
-import CodingMascot, { CodingMascotStyle } from './coding-mascot'
+import CodingMascot, { CodingMascotStyle, CARD_TILT_MS } from './coding-mascot'
+
+const CARD_TILT_DEG = 4
 
 const JavaChallenge = ({ challenge, onSolved, onOtherChallenge, buttonLabel = 'Run' }) => {
   const [value, setValue] = useState('')
   const [status, setStatus] = useState(null) // null | 'wrong' | 'correct'
+  const cardRef = useRef(null)
 
   useEffect(() => {
     setValue('')
     setStatus(null)
   }, [challenge])
+
+  // Card starts straight. It only tilts/untilts when the "Jangan diklik"
+  // button (components/animated-logo.js) fires these window events; the
+  // mascot (coding-mascot.js) listens for the same events to time its own
+  // slide-in after the card finishes tilting.
+  useEffect(() => {
+    const el = cardRef.current
+    if (!el) return undefined
+
+    const reduceMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    const handleTilt = () => {
+      el.style.transition = reduceMotion() ? 'none' : `transform ${CARD_TILT_MS}ms ease-out`
+      el.style.transform = `rotate(${CARD_TILT_DEG}deg)`
+    }
+    const handleUntilt = () => {
+      el.style.transition = reduceMotion() ? 'none' : `transform ${CARD_TILT_MS}ms ease-out`
+      el.style.transform = 'rotate(0deg)'
+    }
+
+    window.addEventListener('adompo:tilt', handleTilt)
+    window.addEventListener('adompo:untilt', handleUntilt)
+    return () => {
+      window.removeEventListener('adompo:tilt', handleTilt)
+      window.removeEventListener('adompo:untilt', handleUntilt)
+    }
+  }, [])
 
   const codeColor = useColorModeValue('gray.800', 'green.300')
   const boxBg = useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')
@@ -28,13 +58,13 @@ const JavaChallenge = ({ challenge, onSolved, onOtherChallenge, buttonLabel = 'R
 
   return (
     <Box
+      ref={cardRef}
       position="relative"
       borderRadius="lg"
       p={4}
       bg={boxBg}
       borderWidth={1}
       borderColor={borderColor}
-      transform="rotate(4deg)"
       css={{ backdropFilter: 'blur(10px)' }}
     >
       <CodingMascotStyle />

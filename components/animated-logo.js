@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Global } from '@emotion/react'
-import { Box, useColorModeValue } from '@chakra-ui/react'
+import { Box, HStack, useColorModeValue } from '@chakra-ui/react'
 import { logoPieces, logoViewBox } from './animated-logo-data'
 
 const PIECE_TRANSITION_MS = 1400
@@ -224,14 +224,33 @@ const LogoScene = () => {
 
 const AnimatedLogo = () => {
   const [replayKey, setReplayKey] = useState(0)
+  const [tilted, setTilted] = useState(false)
+  const [tiltPending, setTiltPending] = useState(false)
   const logoBase = useColorModeValue('#2e2e2e', '#d6d6d6')
   const shineColor = useColorModeValue('#9a9a9a', '#fff')
 
   const replay = useCallback(() => {
     setReplayKey(key => key + 1)
-    if (typeof window !== 'undefined') {
-      window.dispatchEvent(new Event('adompo:replay'))
+  }, [])
+
+  const toggleTilt = useCallback(() => {
+    if (typeof window === 'undefined') return
+    if (tilted) {
+      window.dispatchEvent(new Event('adompo:untilt'))
+      setTilted(false)
+    } else {
+      setTiltPending(true)
+      window.dispatchEvent(new Event('adompo:tilt'))
     }
+  }, [tilted])
+
+  useEffect(() => {
+    const handleTiltComplete = () => {
+      setTiltPending(false)
+      setTilted(true)
+    }
+    window.addEventListener('adompo:tilt-complete', handleTiltComplete)
+    return () => window.removeEventListener('adompo:tilt-complete', handleTiltComplete)
   }, [])
 
   return (
@@ -244,16 +263,29 @@ const AnimatedLogo = () => {
       }}
     >
       <LogoScene key={replayKey} />
-      <Box
-        as="button"
-        type="button"
-        onClick={replay}
-        mt={2}
-        fontSize="xs"
-        opacity={0.5}
-      >
-        Replay
-      </Box>
+      <HStack justify="center" mt={2} spacing={4}>
+        <Box
+          as="button"
+          type="button"
+          onClick={replay}
+          fontSize="xs"
+          opacity={0.5}
+        >
+          Replay
+        </Box>
+        <Box
+          as="button"
+          type="button"
+          onClick={toggleTilt}
+          disabled={tiltPending}
+          fontSize="xs"
+          color={tilted ? undefined : 'red.400'}
+          opacity={tiltPending ? 0.3 : 0.5}
+          cursor={tiltPending ? 'default' : 'pointer'}
+        >
+          {tilted ? 'Kembalikan ke semula' : 'Jangan diklik'}
+        </Box>
+      </HStack>
     </Box>
   )
 }
