@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Global } from '@emotion/react'
 import { Box } from '@chakra-ui/react'
 
@@ -88,29 +89,25 @@ export const CodingMascotStyle = () => (
       }
 
       .coding-mascot-bubble-wrap {
-        position: absolute;
-        bottom: calc(100% + 53px);
-        right: 6px;
+        position: fixed;
+        z-index: 2;
       }
       .coding-mascot__bubble {
-        position: absolute;
-        bottom: 0;
-        right: 0;
+        position: relative;
         width: max-content;
-        max-width: min(200px, 72vw);
+        max-width: var(--bubble-w, 200px);
         background: #fff;
         color: #141414;
         border: 2px solid #141414;
         border-radius: 14px;
         padding: 10px 14px;
         cursor: pointer;
-        z-index: 2;
       }
       .coding-mascot__bubble::after,
       .coding-mascot__bubble::before {
         content: '';
         position: absolute;
-        right: 18px;
+        left: var(--tail-left, 50%);
         width: 0;
         height: 0;
         border-left: 8px solid transparent;
@@ -173,10 +170,40 @@ const prefersReducedMotion = () =>
 // the same edge margin on both sides.
 const leftCornerOffset = cardWidth => -(cardWidth - MASCOT_WIDTH - 2 * EDGE_MARGIN)
 
+const BUBBLE_GAP = 8 // minimum breathing room from the viewport edge
+const BUBBLE_MAX_WIDTH = 200
+
 const CodingMascot = () => {
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [bubblePos, setBubblePos] = useState(null)
   const wrapRef = useRef(null)
   const bubbleRef = useRef(null)
+
+  // Wherever the mascot currently is (idle at the left corner, mid-slide,
+  // or landed/teetering at the right corner), position the bubble right
+  // above it - clamped so it never runs off either edge of the viewport.
+  const openBubble = () => {
+    const el = wrapRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const viewportWidth = document.documentElement.clientWidth
+    const bubbleWidth = Math.min(BUBBLE_MAX_WIDTH, viewportWidth - BUBBLE_GAP * 2)
+    const mascotCenterX = rect.left + rect.width / 2
+
+    let left = mascotCenterX - bubbleWidth / 2
+    left = Math.max(BUBBLE_GAP, Math.min(left, viewportWidth - bubbleWidth - BUBBLE_GAP))
+
+    let tailLeft = mascotCenterX - left
+    tailLeft = Math.max(16, Math.min(tailLeft, bubbleWidth - 16))
+
+    setBubblePos({
+      left,
+      bottom: window.innerHeight - rect.top + 14,
+      width: bubbleWidth,
+      tailLeft
+    })
+    setDialogOpen(true)
+  }
 
   // Parked at the card's left corner until "Do Not Click" is pressed.
   useEffect(() => {
@@ -270,18 +297,34 @@ const CodingMascot = () => {
     }
   }, [dialogOpen])
 
-  return (
-    <>
-      {dialogOpen && (
-        <Box className="coding-mascot-bubble-wrap" ref={bubbleRef}>
-          <Box className="coding-mascot__bubble" onClick={() => setDialogOpen(false)}>
-            <Box className="coding-mascot__bubble-label">ADOMPO</Box>
-            <Box className="coding-mascot__bubble-text">
-              <span>kepo ni yeee, ngapain disini?</span>
-            </Box>
+  // Rendered into document.body via a portal: the mascot's ancestor card
+  // gets a CSS transform when tilted, and a transformed ancestor becomes the
+  // containing block for `position: fixed` descendants, which would otherwise
+  // make the bubble anchor to the tilted card instead of the real viewport.
+  const bubble =
+    dialogOpen && bubblePos && typeof document !== 'undefined' ? (
+      <Box
+        className="coding-mascot-bubble-wrap"
+        ref={bubbleRef}
+        style={{
+          left: bubblePos.left,
+          bottom: bubblePos.bottom,
+          '--bubble-w': `${bubblePos.width}px`,
+          '--tail-left': `${bubblePos.tailLeft}px`
+        }}
+      >
+        <Box className="coding-mascot__bubble" onClick={() => setDialogOpen(false)}>
+          <Box className="coding-mascot__bubble-label">ADOMPO</Box>
+          <Box className="coding-mascot__bubble-text">
+            <span>kepo ni yeee, ngapain disini?</span>
           </Box>
         </Box>
-      )}
+      </Box>
+    ) : null
+
+  return (
+    <>
+      {bubble && createPortal(bubble, document.body)}
       <Box className="coding-mascot" ref={wrapRef}>
         <Box
           as="button"
@@ -289,7 +332,7 @@ const CodingMascot = () => {
           className="coding-mascot__btn"
           aria-label="Click to see a reaction"
           aria-expanded={dialogOpen}
-          onClick={() => setDialogOpen(v => !v)}
+          onClick={() => (dialogOpen ? setDialogOpen(false) : openBubble())}
         >
           <img className="coding-mascot__desk" src="/pixel-desk.svg" alt="" aria-hidden="true" />
         </Box>
