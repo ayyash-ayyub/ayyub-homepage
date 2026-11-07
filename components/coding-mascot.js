@@ -48,7 +48,7 @@ export const CodingMascotStyle = () => (
       }
       .coding-mascot__words {
         position: absolute;
-        left: 68%;
+        left: 45%;
         top: 14%;
         pointer-events: none;
       }
@@ -58,7 +58,7 @@ export const CodingMascotStyle = () => (
         top: 0;
         white-space: nowrap;
         font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-        font-size: 9px;
+        font-size: clamp(7px, 1.9vw, 9px);
         font-weight: 700;
         color: #ffffff;
         text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.7);
@@ -87,13 +87,17 @@ export const CodingMascotStyle = () => (
         .coding-mascot__word { animation: none; opacity: 0; }
       }
 
+      .coding-mascot-bubble-wrap {
+        position: absolute;
+        bottom: calc(100% + 53px);
+        right: 6px;
+      }
       .coding-mascot__bubble {
         position: absolute;
-        bottom: calc(100% + 14px);
-        left: 50%;
-        transform: translateX(-50%);
+        bottom: 0;
+        right: 0;
         width: max-content;
-        max-width: 200px;
+        max-width: min(200px, 72vw);
         background: #fff;
         color: #141414;
         border: 2px solid #141414;
@@ -106,8 +110,7 @@ export const CodingMascotStyle = () => (
       .coding-mascot__bubble::before {
         content: '';
         position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+        right: 18px;
         width: 0;
         height: 0;
         border-left: 8px solid transparent;
@@ -173,6 +176,7 @@ const leftCornerOffset = cardWidth => -(cardWidth - MASCOT_WIDTH - 2 * EDGE_MARG
 const CodingMascot = () => {
   const [dialogOpen, setDialogOpen] = useState(false)
   const wrapRef = useRef(null)
+  const bubbleRef = useRef(null)
 
   // Parked at the card's left corner until "Jangan diklik" is pressed.
   useEffect(() => {
@@ -246,7 +250,9 @@ const CodingMascot = () => {
     if (!dialogOpen) return undefined
 
     const handlePointerDown = e => {
-      if (wrapRef.current && !wrapRef.current.contains(e.target)) {
+      const inMascot = wrapRef.current && wrapRef.current.contains(e.target)
+      const inBubble = bubbleRef.current && bubbleRef.current.contains(e.target)
+      if (!inMascot && !inBubble) {
         setDialogOpen(false)
       }
     }
@@ -265,35 +271,39 @@ const CodingMascot = () => {
   }, [dialogOpen])
 
   return (
-    <Box className="coding-mascot" ref={wrapRef}>
+    <>
       {dialogOpen && (
-        <Box className="coding-mascot__bubble" onClick={() => setDialogOpen(false)}>
-          <Box className="coding-mascot__bubble-label">ADOMPO</Box>
-          <Box className="coding-mascot__bubble-text">
-            <span>kepo ni yeee, ngapain disini?</span>
+        <Box className="coding-mascot-bubble-wrap" ref={bubbleRef}>
+          <Box className="coding-mascot__bubble" onClick={() => setDialogOpen(false)}>
+            <Box className="coding-mascot__bubble-label">ADOMPO</Box>
+            <Box className="coding-mascot__bubble-text">
+              <span>kepo ni yeee, ngapain disini?</span>
+            </Box>
           </Box>
         </Box>
       )}
-      <Box
-        as="button"
-        type="button"
-        className="coding-mascot__btn"
-        aria-label="Klik untuk lihat reaksi"
-        aria-expanded={dialogOpen}
-        onClick={() => setDialogOpen(v => !v)}
-      >
-        <img className="coding-mascot__desk" src="/pixel-desk.svg" alt="" aria-hidden="true" />
+      <Box className="coding-mascot" ref={wrapRef}>
+        <Box
+          as="button"
+          type="button"
+          className="coding-mascot__btn"
+          aria-label="Klik untuk lihat reaksi"
+          aria-expanded={dialogOpen}
+          onClick={() => setDialogOpen(v => !v)}
+        >
+          <img className="coding-mascot__desk" src="/pixel-desk.svg" alt="" aria-hidden="true" />
+        </Box>
+        <img className="coding-mascot__arm" src="/pixel-arm.svg" alt="" aria-hidden="true" />
+        <Box className="coding-mascot__words" aria-hidden="true">
+          <span className="coding-mascot__word">code</span>
+          <span className="coding-mascot__word">commit</span>
+          <span className="coding-mascot__word">push</span>
+          <span className="coding-mascot__word">pull</span>
+          <span className="coding-mascot__word coding-mascot__word--warn">pemai ngana!</span>
+          <span className="coding-mascot__word">deploy</span>
+        </Box>
       </Box>
-      <img className="coding-mascot__arm" src="/pixel-arm.svg" alt="" aria-hidden="true" />
-      <Box className="coding-mascot__words" aria-hidden="true">
-        <span className="coding-mascot__word">code</span>
-        <span className="coding-mascot__word">commit</span>
-        <span className="coding-mascot__word">push</span>
-        <span className="coding-mascot__word">pull</span>
-        <span className="coding-mascot__word coding-mascot__word--warn">pemai ngana!</span>
-        <span className="coding-mascot__word">deploy</span>
-      </Box>
-    </Box>
+    </>
   )
 }
 
