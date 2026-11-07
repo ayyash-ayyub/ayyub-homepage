@@ -4,7 +4,7 @@ import CodingMascot, { CodingMascotStyle, CARD_TILT_MS } from './coding-mascot'
 
 const CARD_TILT_DEG = 4
 
-const JavaChallenge = ({ challenge, onSolved, onOtherChallenge, buttonLabel = 'Run' }) => {
+const JavaChallenge = ({ challenge, onSolved, onOtherChallenge, buttonLabel = 'Run', withMascot = false }) => {
   const [value, setValue] = useState('')
   const [status, setStatus] = useState(null) // null | 'wrong' | 'correct'
   const cardRef = useRef(null)
@@ -14,13 +14,14 @@ const JavaChallenge = ({ challenge, onSolved, onOtherChallenge, buttonLabel = 'R
     setStatus(null)
   }, [challenge])
 
-  // Card starts straight. It only tilts/untilts when the "Jangan diklik"
+  // Card starts straight. It only tilts/untilts when the "Do Not Click"
   // button (components/animated-logo.js) fires these window events; the
   // mascot (coding-mascot.js) listens for the same events to time its own
-  // slide-in after the card finishes tilting.
+  // slide-in after the card finishes tilting. Only wired up where the
+  // mascot is actually shown (the tilt exists to set up its landing).
   useEffect(() => {
     const el = cardRef.current
-    if (!el) return undefined
+    if (!el || !withMascot) return undefined
 
     const reduceMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -39,7 +40,7 @@ const JavaChallenge = ({ challenge, onSolved, onOtherChallenge, buttonLabel = 'R
       window.removeEventListener('adompo:tilt', handleTilt)
       window.removeEventListener('adompo:untilt', handleUntilt)
     }
-  }, [])
+  }, [withMascot])
 
   const codeColor = useColorModeValue('gray.800', 'green.300')
   const boxBg = useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')
@@ -67,8 +68,12 @@ const JavaChallenge = ({ challenge, onSolved, onOtherChallenge, buttonLabel = 'R
       borderColor={borderColor}
       css={{ backdropFilter: 'blur(10px)' }}
     >
-      <CodingMascotStyle />
-      <CodingMascot />
+      {withMascot && (
+        <>
+          <CodingMascotStyle />
+          <CodingMascot />
+        </>
+      )}
       <HStack mb={2} opacity={0.8} spacing={2} align="center">
         <Box
           as="span"
@@ -98,7 +103,7 @@ const JavaChallenge = ({ challenge, onSolved, onOtherChallenge, buttonLabel = 'R
       <HStack>
         <Input
           size="sm"
-          placeholder="Jawaban..."
+          placeholder="Answer..."
           maxLength={64}
           value={value}
           onChange={e => {
@@ -131,13 +136,13 @@ const JavaChallenge = ({ challenge, onSolved, onOtherChallenge, buttonLabel = 'R
           </HStack>
         ) : (
           <Text fontSize="xs" color="red.400" mt={2}>
-            Belum tepat, coba lagi.
+            Not quite, try again.
           </Text>
         )
       )}
       {status === 'correct' && (
         <Text fontSize="xs" color="green.400" mt={2}>
-          ✅ Benar! Membuka...
+          ✅ Correct! Unlocking...
         </Text>
       )}
     </Box>

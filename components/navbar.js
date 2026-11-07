@@ -30,13 +30,13 @@ import { challenges } from './java-challenges'
 
 const NAV_LINKS = [
   { id: 'works', label: 'Works', href: 'https://terminalkoding.com' },
-  { id: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/adompo/' },
+  { id: 'linkedin', label: 'Connect', href: 'https://www.linkedin.com/in/adompo/' },
   {
     id: 'resume',
-    label: '2022 Resume',
+    label: 'Career Snapshot',
     href: 'https://drive.google.com/file/d/1XHwKWX83pFmFKFuDpTwRMH-FYJNFxr-Z/view?usp=sharing'
   },
-  { id: 'repo', label: 'My Repo', href: 'https://github.com/ayyash-ayyub', icon: IoLogoGithub }
+  { id: 'repo', label: 'Codebase', href: 'https://github.com/ayyash-ayyub', icon: IoLogoGithub }
 ]
 
 const GatedLinkItem = ({ link, solved, onLocked, ...props }) => {

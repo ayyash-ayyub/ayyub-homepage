@@ -283,7 +283,7 @@ const AnimatedLogo = () => {
           opacity={tiltPending ? 0.3 : 0.5}
           cursor={tiltPending ? 'default' : 'pointer'}
         >
-          {tilted ? 'Kembalikan ke semula' : 'Jangan diklik'}
+          {tilted ? 'Revert' : 'Do Not Click'}
         </Box>
       </HStack>
     </Box>

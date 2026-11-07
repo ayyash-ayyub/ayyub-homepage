@@ -66,6 +66,7 @@ const Home = () => {
             challenge={homeChallenge}
             onSolved={() => setHomeUnlocked(true)}
             onOtherChallenge={pickOtherChallenge}
+            withMascot
           />
         </Box>
       )}

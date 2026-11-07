@@ -178,7 +178,7 @@ const CodingMascot = () => {
   const wrapRef = useRef(null)
   const bubbleRef = useRef(null)
 
-  // Parked at the card's left corner until "Jangan diklik" is pressed.
+  // Parked at the card's left corner until "Do Not Click" is pressed.
   useEffect(() => {
     const el = wrapRef.current
     if (!el || !el.parentElement) return undefined
@@ -287,7 +287,7 @@ const CodingMascot = () => {
           as="button"
           type="button"
           className="coding-mascot__btn"
-          aria-label="Klik untuk lihat reaksi"
+          aria-label="Click to see a reaction"
           aria-expanded={dialogOpen}
           onClick={() => setDialogOpen(v => !v)}
         >
